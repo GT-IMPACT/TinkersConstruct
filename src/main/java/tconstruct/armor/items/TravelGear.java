@@ -16,14 +16,8 @@ import net.minecraft.world.World;
 import tconstruct.armor.ArmorProxyClient;
 import tconstruct.armor.TinkerArmor;
 import tconstruct.library.armor.*;
-import thaumcraft.api.IGoggles;
-import thaumcraft.api.nodes.IRevealer;
 
-@Optional.InterfaceList({
-    @Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.nodes.IRevealer"),
-    @Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.IGoggles")
-})
-public class TravelGear extends ArmorCore implements IRevealer, IGoggles
+public class TravelGear extends ArmorCore
 {
 
     public TravelGear(ArmorPart part)
@@ -198,23 +192,5 @@ public class TravelGear extends ArmorCore implements IRevealer, IGoggles
         }
 
         super.addInformation(stack, player, list, par4);
-    }
-
-    @Optional.Method(modid = "Thaumcraft")
-    @Override
-    public boolean showNodes(ItemStack itemstack, EntityLivingBase player) {
-        if(itemstack == null || !itemstack.hasTagCompound() || itemstack.getItem() != TinkerArmor.travelGoggles)
-            return false;
-
-        return itemstack.getTagCompound().getCompoundTag(this.getBaseTagName()).getBoolean("Thaumic Senses");
-    }
-
-    @Optional.Method(modid = "Thaumcraft")
-    @Override
-    public boolean showIngamePopups(ItemStack itemstack, EntityLivingBase player) {
-        if(itemstack == null || !itemstack.hasTagCompound() || itemstack.getItem() != TinkerArmor.travelGoggles)
-            return false;
-
-        return itemstack.getTagCompound().getCompoundTag(this.getBaseTagName()).getBoolean("Thaumic Vision");
     }
 }
